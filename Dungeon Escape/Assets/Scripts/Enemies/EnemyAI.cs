@@ -45,7 +45,8 @@ public class EnemyAI : MonoBehaviour
     public void Move(float moveSpeed)
     {
         // if Idle animation is currently playing - do nothing
-        if (enemyAnimation.IsSpecificAnimationPlaying(EnemyAnimationTypes.Idle))
+        if (enemyAnimation.IsSpecificAnimationPlaying(EnemyAnimationTypes.Idle) 
+            || enemyAnimation.IsSpecificAnimationPlaying(EnemyAnimationTypes.Hit))
         {
             return;
         }

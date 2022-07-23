@@ -7,21 +7,25 @@ public class EnemyAnimation : MonoBehaviour
     #endregion
     private Animator animator;
     private EnemyAI enemyAI;
+    private IDamagable enemy;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         enemyAI = GetComponent<EnemyAI>();
+        enemy = GetComponent<IDamagable>();
     }
 
     private void OnEnable()
     {
         enemyAI.OnWaypointChange += PlayIdleAnimation;
+        enemy.OnTakeDamage += PlayHitAnimation;
     }
 
     private void OnDisable()
     {
         enemyAI.OnWaypointChange -= PlayIdleAnimation;
+        enemy.OnTakeDamage -= PlayHitAnimation;
     }
 
 
@@ -31,6 +35,14 @@ public class EnemyAnimation : MonoBehaviour
     public void PlayIdleAnimation()
     {
         animator.SetTrigger(EnemyAnimationTypes.Idle.ToString());
+    }
+
+    /// <summary>
+    /// Play Hit animation when get hit
+    /// </summary>
+    public void PlayHitAnimation()
+    {
+        animator.SetTrigger(EnemyAnimationTypes.Hit.ToString());
     }
 
     /// <summary>
