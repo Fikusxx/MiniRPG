@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
         if (raycastHit.collider != null)
         {
             // Show name of the object ray collided with
-            Debug.Log(raycastHit.collider.name);
+            //Debug.Log(raycastHit.collider.name);
 
             isGrounded = true;
             return isGrounded;

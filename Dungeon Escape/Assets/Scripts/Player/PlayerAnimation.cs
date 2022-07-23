@@ -58,6 +58,14 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     /// <summary>
+    /// Return true if specific animation is currently playing
+    /// </summary>
+    public bool IsSpecificAnimationPlaying(string name)
+    {
+        return playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(name);
+    }
+
+    /// <summary>
     /// Check for a specific animation clip to start playing and then call onComplete method
     /// </summary>
     public IEnumerator CheckAnimationCompleted(string currentAnim, Action onComplete)
