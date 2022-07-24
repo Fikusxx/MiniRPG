@@ -5,16 +5,16 @@ public class Spider : Enemy
 {
     #region References
     #endregion
-    private EnemyAI enemyAI;
+    private EnemyMovementAI enemyAI;
 
 
     private void Awake()
     {
-        enemyAI = GetComponent<EnemyAI>();
+        enemyAI = GetComponent<EnemyMovementAI>();
     }
 
     private void Update()
     {
-        enemyAI.Move(moveSpeed);
+        enemyAI.MoveTowardsWaypoints(moveSpeed);
     }
 }

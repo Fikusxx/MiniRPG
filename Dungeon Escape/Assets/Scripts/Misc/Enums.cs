@@ -8,6 +8,7 @@ public enum EnemyAnimationTypes
     Walk,
     Attack,
     Hit,
+    InCombat,
     Death,
     None
 }

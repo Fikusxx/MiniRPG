@@ -8,7 +8,10 @@ public abstract class Enemy : MonoBehaviour
     #endregion
     [SerializeField] protected int currentHealth;
     [SerializeField] protected int maxHealth;
+
     [SerializeField] protected float moveSpeed;
+    public float MoveSpeed { get => moveSpeed; }
+
     [SerializeField] protected int gemsDrop;
 
 

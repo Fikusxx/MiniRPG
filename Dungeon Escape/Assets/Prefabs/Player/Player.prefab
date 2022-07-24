@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1171407069}
   - component: {fileID: 1171407070}
   - component: {fileID: 1171407071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6986109613844281112}
   - component: {fileID: 6986109613844281114}
   - component: {fileID: 6986109613844281116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   moveSpeedMultiplier: 1
-  jumpForce: 5
+  jumpForce: 7
   attackCooldown: 0.5
   groundLayer:
     serializedVersion: 2
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 6986109613866227933}
   - component: {fileID: 6986109613866227935}
   - component: {fileID: 6986109613866227934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword_Arc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 6986109615104208520}
   - component: {fileID: 6986109615104208521}
   - component: {fileID: 6986109615104208522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
