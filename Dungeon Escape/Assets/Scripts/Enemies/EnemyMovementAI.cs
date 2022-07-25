@@ -24,7 +24,7 @@ public class EnemyMovementAI : MonoBehaviour
     private EnemyCombatAI enemyCombatAI;
     private Player player;
     private Enemy enemy;
-    private IDamagable damagable;
+    private IDamagable myHealth;
 
     #region States
     #endregion
@@ -38,7 +38,7 @@ public class EnemyMovementAI : MonoBehaviour
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
-        damagable = GetComponent<IDamagable>();
+        myHealth = GetComponent<IDamagable>();
         player = FindObjectOfType<Player>();
         enemyAnimation = GetComponent<EnemyAnimation>();
         enemyCombatAI = GetComponent<EnemyCombatAI>();
@@ -46,12 +46,12 @@ public class EnemyMovementAI : MonoBehaviour
 
     private void OnEnable()
     {
-        damagable.OnDeath += DisableAI;
+        myHealth.OnDeath += DisableAI;
     }
 
     private void OnDisable()
     {
-        damagable.OnDeath -= DisableAI;
+        myHealth.OnDeath -= DisableAI;
     }
 
     private void Start()

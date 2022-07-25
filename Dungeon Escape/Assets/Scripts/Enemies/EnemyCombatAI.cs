@@ -7,9 +7,10 @@ public class EnemyCombatAI : MonoBehaviour
     #region References
     #endregion
     private EnemyAnimation enemyAnimation;
-    private IDamagable damagable;
-    private IEnemyWeapon weapon;
+    private IDamagable myHealth;
+    private IEnemyWeapon myWeapon;
     private Player player;
+    private IDamagable playerHealth;
 
     #region Combat Data
     [Space(10)]
@@ -35,21 +36,22 @@ public class EnemyCombatAI : MonoBehaviour
     private void Awake()
     {
         enemyAnimation = GetComponent<EnemyAnimation>();
-        weapon = GetComponentInChildren<IEnemyWeapon>();
-        damagable = GetComponent<IDamagable>();
+        myWeapon = GetComponentInChildren<IEnemyWeapon>();
+        myHealth = GetComponent<IDamagable>();
         player = FindObjectOfType<Player>();
+        playerHealth = FindObjectOfType<Player>().GetComponent<IDamagable>();
     }
 
     private void OnEnable()
     {
-        damagable.OnDeath += DisableAI;
-        player.GetComponent<IDamagable>().OnDeath += SetTargetAsDead;
+        myHealth.OnDeath += DisableAI;
+        playerHealth.OnDeath += SetTargetAsDead;
     }
 
     private void OnDisable()
     {
-        damagable.OnDeath -= DisableAI;
-        player.GetComponent<IDamagable>().OnDeath -= SetTargetAsDead;
+        myHealth.OnDeath -= DisableAI;
+        playerHealth.OnDeath -= SetTargetAsDead;
     }
 
     private void Update()
@@ -99,7 +101,7 @@ public class EnemyCombatAI : MonoBehaviour
     /// </summary>
     private bool IsAttackOffCooldown()
     {
-        return Time.time - lastAttackTime > weapon.AttackCooldown;
+        return Time.time - lastAttackTime > myWeapon.AttackCooldown;
     }
 
     /// <summary>
@@ -107,7 +109,7 @@ public class EnemyCombatAI : MonoBehaviour
     /// </summary>
     private void TryAttackThePlayer()
     {
-        if ((GetPlayerDistance() < weapon.AttackRangeDistance) && IsAttackOffCooldown())
+        if ((GetPlayerDistance() < myWeapon.AttackRangeDistance) && IsAttackOffCooldown())
         {
             lastAttackTime = Time.time;
             OnWithinAttackRange?.Invoke();

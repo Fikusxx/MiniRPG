@@ -24,10 +24,6 @@ public class HealthSystem : MonoBehaviour, IDamagable
     private float lastTimeAttacked;
     [SerializeField] private float immunityFrame;
 
-    #region States
-    #endregion 
-    private bool isAlive = true;
-
 
     private void Start()
     {
@@ -54,7 +50,6 @@ public class HealthSystem : MonoBehaviour, IDamagable
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            isAlive = false;
             OnDeath?.Invoke();
             return;
         }
@@ -69,13 +64,5 @@ public class HealthSystem : MonoBehaviour, IDamagable
     private bool CanBeDamaged()
     {
         return Time.time - lastTimeAttacked > immunityFrame;
-    }
-
-    /// <summary>
-    /// Is this object alive?
-    /// </summary>
-    public bool IsAlive()
-    {
-        return isAlive;
     }
 }
