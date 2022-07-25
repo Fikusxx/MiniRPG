@@ -214,7 +214,10 @@ GameObject:
   - component: {fileID: 4335626058512207867}
   - component: {fileID: 4335626058512207865}
   - component: {fileID: 4335626058512207864}
+  - component: {fileID: 1934694319636581968}
   - component: {fileID: 188094856407585196}
+  - component: {fileID: 8074532088370504839}
+  - component: {fileID: 8135778936166374416}
   m_Layer: 0
   m_Name: Moss_Giant
   m_TagString: Untagged
@@ -276,8 +279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4666ba7256d0e4fbe0559342fc6ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 5
   moveSpeed: 1
   gemsDrop: 2
 --- !u!114 &4335626058512207864
@@ -295,6 +296,19 @@ MonoBehaviour:
   waypointsList:
   - {fileID: 4335626057431774896}
   - {fileID: 4335626058770492801}
+--- !u!114 &1934694319636581968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335626058512207869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b786d17b27e30fc47aa2c5be96c9fe6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatDistanceTrigger: 5
 --- !u!114 &188094856407585196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +321,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7f5dd9432b65447b005200bac54bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8074532088370504839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335626058512207869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9625be5536dc74bbc4267c3d76fc43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 5
+  maxHealth: 5
+  immunityFrame: 0.5
+--- !u!114 &8135778936166374416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335626058512207869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b786d17b27e30fc47aa2c5be96c9fe6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatDistanceTrigger: 5
 --- !u!1 &4335626058770492802
 GameObject:
   m_ObjectHideFlags: 0

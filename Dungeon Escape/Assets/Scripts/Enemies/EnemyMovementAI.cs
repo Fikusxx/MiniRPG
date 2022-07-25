@@ -151,10 +151,10 @@ public class EnemyMovementAI : MonoBehaviour
     /// </summary>
     private bool IsMovementDisabled()
     {
-        if (enemyAnimation.IsAnimationPlaying(EnemyAnimationTypes.Idle)
-            || enemyAnimation.IsAnimationPlaying(EnemyAnimationTypes.Hit)
-            || enemyAnimation.IsAnimationPlaying(EnemyAnimationTypes.Death)
-            || enemyAnimation.IsAnimationPlaying(EnemyAnimationTypes.Attack))
+        if (enemyAnimation.IsAnimationPlaying(AnimationType.Idle)
+            || enemyAnimation.IsAnimationPlaying(AnimationType.Hit)
+            || enemyAnimation.IsAnimationPlaying(AnimationType.Death)
+            || enemyAnimation.IsAnimationPlaying(AnimationType.Attack))
         {
             return true;
         }

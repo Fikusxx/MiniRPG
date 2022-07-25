@@ -140,7 +140,9 @@ GameObject:
   - component: {fileID: 6491302285500323340}
   - component: {fileID: 6491302285500323328}
   - component: {fileID: 6491302285500323341}
+  - component: {fileID: 4228818179531266448}
   - component: {fileID: 6491302285500323330}
+  - component: {fileID: 9090466577764490570}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -202,8 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724c219faead0641a9d5a084031e790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 2
   moveSpeed: 2.5
   gemsDrop: 1
 --- !u!114 &6491302285500323341
@@ -221,6 +221,19 @@ MonoBehaviour:
   waypointsList:
   - {fileID: 6491302285271978728}
   - {fileID: 6491302285136748554}
+--- !u!114 &4228818179531266448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491302285500323329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b786d17b27e30fc47aa2c5be96c9fe6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatDistanceTrigger: 5
 --- !u!114 &6491302285500323330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +246,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7f5dd9432b65447b005200bac54bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9090466577764490570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491302285500323329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9625be5536dc74bbc4267c3d76fc43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 3
+  maxHealth: 3
+  immunityFrame: 0.3
 --- !u!1 &6491302286320094917
 GameObject:
   m_ObjectHideFlags: 0

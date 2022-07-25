@@ -9,13 +9,27 @@ public class PlayerAnimation : MonoBehaviour
     #endregion
     private Animator playerAnimator;
     private Animator swordAnimator;
+    private IDamagable damagable;
 
 
     private void Awake()
     {
+        damagable = GetComponent<IDamagable>();
         playerAnimator = transform.GetChild(0).GetComponent<Animator>();
         swordAnimator = transform.GetChild(1).GetComponent<Animator>();
         
+    }
+
+    private void OnEnable()
+    {
+        damagable.OnTakeDamage += PlayHitAnimation;
+        damagable.OnDeath += PlayDeathAnimation;
+    }
+
+    private void OnDisable()
+    {
+        damagable.OnTakeDamage -= PlayHitAnimation;
+        damagable.OnDeath -= PlayDeathAnimation;
     }
 
     /// <summary>
@@ -40,8 +54,24 @@ public class PlayerAnimation : MonoBehaviour
     /// </summary>
     public void ProcessAttack()
     {
-        playerAnimator.SetTrigger("Attack");
+        playerAnimator.SetTrigger(AnimationType.Attack.ToString());
         swordAnimator.SetTrigger("Sword_Arc");
+    }
+
+    /// <summary>
+    /// Play hit animation
+    /// </summary>
+    private void PlayHitAnimation()
+    {
+        playerAnimator.SetTrigger(AnimationType.Hit.ToString());
+    }
+
+    /// <summary>
+    /// Play death animation
+    /// </summary>
+    private void PlayDeathAnimation()
+    {
+        playerAnimator.SetTrigger(AnimationType.Death.ToString());
     }
 
     /// <summary>

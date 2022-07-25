@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     private float lastSpriteDirection = 1f;
     private bool isGrounded;
     private bool isAttacking;
-    [SerializeField] private float attackCooldown;
 
     #region References
     [Space(10)]
@@ -31,26 +30,46 @@ public class Player : MonoBehaviour
     #endregion
     [SerializeField] private LayerMask groundLayer;
     private Rigidbody2D rb;
+    private IWeapon weapon;
+    private IDamagable damagable;
     private PlayerAnimation playerAnimation;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        damagable = GetComponent<IDamagable>();
+        weapon = GetComponentInChildren<IWeapon>();
         playerAnimation = GetComponent<PlayerAnimation>();
+    }
+
+    private void OnEnable()
+    {
+        damagable.OnDeath += DisablePlayerMovement;
+    }
+
+    private void OnDisable()
+    {
+        damagable.OnDeath -= DisablePlayerMovement;
     }
 
     private void Update()
     {
-        GetPlayerInput();
-        IsGrounded();
+        if (isPlayerInputDisabled == false)
+        {
+            GetPlayerInput();
+            IsGrounded();
 
-        Jump();
-        Attack();
+            Jump();
+            Attack();
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if (isPlayerInputDisabled == false)
+        {
+            Move();
+        }
     }
 
 
@@ -74,7 +93,7 @@ public class Player : MonoBehaviour
             isAttacking = true;
             playerAnimation.ProcessAttack();
 
-            StartCoroutine(DelayBetweenAttacks(attackCooldown));
+            StartCoroutine(DelayBetweenAttacks(weapon.AttackCooldown));
         }
     }
 
@@ -101,16 +120,13 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        if (isPlayerInputDisabled == false)
-        {
-            // Handle movement and sprite direction
-            rb.velocity = new Vector2(xInput * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
-            FlipSprite();
+        // Handle movement and sprite direction
+        rb.velocity = new Vector2(xInput * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
+        FlipSprite();
 
-            // Switch between Run and Idle animations
-            playerAnimation.ProcessHorizontalMovement(xInput);
-        }
-        
+        // Switch between Run and Idle animations
+        playerAnimation.ProcessHorizontalMovement(xInput);
+
         // Process jumping logic
         playerAnimation.ProcessJumping(isGrounded);
     }

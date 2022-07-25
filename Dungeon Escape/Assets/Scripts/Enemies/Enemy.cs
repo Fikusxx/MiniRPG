@@ -6,13 +6,12 @@ public abstract class Enemy : MonoBehaviour
     [Space(10)]
     [Header("Enemy Core Data")]
     #endregion
-    [SerializeField] protected int currentHealth;
-    [SerializeField] protected int maxHealth;
-
     [SerializeField] protected float moveSpeed;
-    public float MoveSpeed { get => moveSpeed; }
-
     [SerializeField] protected int gemsDrop;
+
+    #region Properties
+    #endregion
+    public float MoveSpeed { get => moveSpeed; }
 
 
     protected virtual void Attack() { }

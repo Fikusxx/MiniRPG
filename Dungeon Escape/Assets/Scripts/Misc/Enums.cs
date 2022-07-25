@@ -2,7 +2,7 @@
 
 
 
-public enum EnemyAnimationTypes
+public enum AnimationType
 {
     Idle,
     Walk,

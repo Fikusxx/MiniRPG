@@ -8,6 +8,7 @@ public class EnemyCombatAI : MonoBehaviour
     #endregion
     private EnemyAnimation enemyAnimation;
     private IDamagable damagable;
+    private IEnemyWeapon weapon;
     private Player player;
 
     #region Combat Data
@@ -18,13 +19,13 @@ public class EnemyCombatAI : MonoBehaviour
     [Tooltip("Distance in Unity units between player and this object. Trigger combat if it's less than this number")]
     #endregion
     [SerializeField] private float combatDistanceTrigger = 5f;
-    [SerializeField] private float attackRangeDistance = 1f;
-    [SerializeField] private float attackCooldown = 0.5f;
     private float lastAttackTime;
 
     #region States
     #endregion
     private bool isAIEnabled = true;
+    private bool inCombat = false;
+    private bool isTargetDead = false;
 
     #region Events
     #endregion
@@ -34,6 +35,7 @@ public class EnemyCombatAI : MonoBehaviour
     private void Awake()
     {
         enemyAnimation = GetComponent<EnemyAnimation>();
+        weapon = GetComponentInChildren<IEnemyWeapon>();
         damagable = GetComponent<IDamagable>();
         player = FindObjectOfType<Player>();
     }
@@ -41,20 +43,21 @@ public class EnemyCombatAI : MonoBehaviour
     private void OnEnable()
     {
         damagable.OnDeath += DisableAI;
+        player.GetComponent<IDamagable>().OnDeath += SetTargetAsDead;
     }
 
     private void OnDisable()
     {
         damagable.OnDeath -= DisableAI;
+        player.GetComponent<IDamagable>().OnDeath -= SetTargetAsDead;
     }
 
     private void Update()
     {
-        if (isAIEnabled == true)
-        {
-            IsInCombat();
-            UpdateCombatStatus();
-        }
+        if (isAIEnabled == false)
+            return;
+
+        UpdateCombatStatus();
     }
 
 
@@ -72,13 +75,6 @@ public class EnemyCombatAI : MonoBehaviour
     private float GetPlayerDistance()
     {
         float distance = Vector2.Distance(transform.position, player.transform.position);
-
-        if ((distance < attackRangeDistance) && IsAttackOffCooldown())
-        {
-            lastAttackTime = Time.time;
-            OnWithinAttackRange?.Invoke();
-        }
-            
         return distance;
     }
 
@@ -88,7 +84,14 @@ public class EnemyCombatAI : MonoBehaviour
     /// </summary>
     public bool IsInCombat()
     {
-        return GetPlayerDistance() < combatDistanceTrigger;
+        if (isTargetDead == true)
+        {
+            inCombat = false;
+            return inCombat;
+        }
+
+        inCombat = GetPlayerDistance() < combatDistanceTrigger;
+        return inCombat;
     }
 
     /// <summary>
@@ -96,7 +99,19 @@ public class EnemyCombatAI : MonoBehaviour
     /// </summary>
     private bool IsAttackOffCooldown()
     {
-        return Time.time - lastAttackTime > attackCooldown;
+        return Time.time - lastAttackTime > weapon.AttackCooldown;
+    }
+
+    /// <summary>
+    /// Attack the player if he's in weapon's reach and weapon is off cooldown
+    /// </summary>
+    private void TryAttackThePlayer()
+    {
+        if ((GetPlayerDistance() < weapon.AttackRangeDistance) && IsAttackOffCooldown())
+        {
+            lastAttackTime = Time.time;
+            OnWithinAttackRange?.Invoke();
+        }
     }
 
     /// <summary>
@@ -104,10 +119,15 @@ public class EnemyCombatAI : MonoBehaviour
     /// </summary>
     private void UpdateCombatStatus()
     {
-        if (IsInCombat() == true)
-            FaceThePlayer();
+        IsInCombat();
 
-        SetCombatStatus(IsInCombat());
+        if (inCombat == true)
+        {
+            FaceThePlayer();
+            TryAttackThePlayer();
+        }
+
+        SetCombatStatus(inCombat);
     }
 
     /// <summary>
@@ -133,5 +153,13 @@ public class EnemyCombatAI : MonoBehaviour
     private void DisableAI()
     {
         isAIEnabled = false;
+    }
+
+    /// <summary>
+    /// Set player target as dead
+    /// </summary>
+    private void SetTargetAsDead()
+    {
+        isTargetDead = true;
     }
 }

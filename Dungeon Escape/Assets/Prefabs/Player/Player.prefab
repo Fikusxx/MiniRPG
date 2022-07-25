@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53c5026233d8804c87c0a3ac7ee5505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  attackCooldown: 0.5
 --- !u!1 &6986109613844281111
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,9 +108,10 @@ GameObject:
   - component: {fileID: 6986109613844281112}
   - component: {fileID: 6986109613844281114}
   - component: {fileID: 6986109613844281116}
+  - component: {fileID: 653764112}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,8 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
   moveSpeedMultiplier: 1
-  jumpForce: 7
-  attackCooldown: 0.5
+  jumpForce: 6
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -208,6 +210,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3f1791b7227ca438481576f0554fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &653764112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986109613844281111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9625be5536dc74bbc4267c3d76fc43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 5
+  immunityFrame: 0.7
 --- !u!1 &6986109613866227932
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
 using UnityEngine;
-using System;
-using System.Collections;
 
 
 public class EnemyAnimation : MonoBehaviour
@@ -18,11 +16,6 @@ public class EnemyAnimation : MonoBehaviour
         enemyMovementAI = GetComponent<EnemyMovementAI>();
         enemyCombatAI = GetComponent<EnemyCombatAI>();
         enemy = GetComponent<IDamagable>();
-    }
-
-    private void Start()
-    {
-        PlayWalkAnimation();
     }
 
     private void OnEnable()
@@ -49,7 +42,7 @@ public class EnemyAnimation : MonoBehaviour
     /// </summary>
     private void PlayIdleAnimation()
     {
-        animator.SetTrigger(EnemyAnimationTypes.Idle.ToString());
+        animator.SetTrigger(AnimationType.Idle.ToString());
     }
 
     /// <summary>
@@ -57,7 +50,7 @@ public class EnemyAnimation : MonoBehaviour
     /// </summary>
     private void PlayWalkAnimation()
     {
-        animator.SetTrigger(EnemyAnimationTypes.Walk.ToString());
+        animator.SetTrigger(AnimationType.Walk.ToString());
     }
 
     /// <summary>
@@ -65,7 +58,7 @@ public class EnemyAnimation : MonoBehaviour
     /// </summary>
     private void PlayAttackAnimation()
     {
-        animator.SetTrigger(EnemyAnimationTypes.Attack.ToString());
+        animator.SetTrigger(AnimationType.Attack.ToString());
     }
 
     /// <summary>
@@ -73,7 +66,7 @@ public class EnemyAnimation : MonoBehaviour
     /// </summary>
     private void PlayHitAnimation()
     {
-        animator.SetTrigger(EnemyAnimationTypes.Hit.ToString());
+        animator.SetTrigger(AnimationType.Hit.ToString());
     }
 
     /// <summary>
@@ -81,14 +74,14 @@ public class EnemyAnimation : MonoBehaviour
     /// </summary>
     private void PlayDeathAnimation()
     {
-        animator.SetTrigger(EnemyAnimationTypes.Death.ToString());
+        animator.SetTrigger(AnimationType.Death.ToString());
 
     }
 
     /// <summary>
     /// Return true if specific animation is currently playing
     /// </summary>
-    public bool IsAnimationPlaying(EnemyAnimationTypes animationType)
+    public bool IsAnimationPlaying(AnimationType animationType)
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(animationType.ToString());
     }
@@ -99,7 +92,7 @@ public class EnemyAnimation : MonoBehaviour
     public void SetInCombatStatus(bool value)
     {
         // This is primarily for testing purpose right now
-        animator.SetBool(EnemyAnimationTypes.InCombat.ToString(), value);
+        animator.SetBool(AnimationType.InCombat.ToString(), value);
 
         // Atm we always walk
         if (value == true)
