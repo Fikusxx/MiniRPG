@@ -16,11 +16,11 @@ public class Skeleton : Enemy
 
     private void OnEnable()
     {
-        healthSystem.OnDeath += SpawnDiamond;
+        healthSystem.OnDeath += SpawnDiamondOnDeath;
     }
 
     private void OnDisable()
     {
-        healthSystem.OnDeath -= SpawnDiamond;
+        healthSystem.OnDeath -= SpawnDiamondOnDeath;
     }
 }

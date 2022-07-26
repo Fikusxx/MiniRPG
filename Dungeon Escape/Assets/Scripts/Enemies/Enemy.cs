@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
     /// <summary>
     /// Spawn diamond upon certian event
     /// </summary>
-    protected virtual void SpawnDiamond()
+    protected virtual void SpawnDiamondOnDeath()
     {
         CollectablesController.Instance.SpawnDiamond(gemsDrop, transform.position);
     }

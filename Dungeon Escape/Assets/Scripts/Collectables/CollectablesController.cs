@@ -34,7 +34,7 @@ public class CollectablesController : MonoBehaviour
 
     #region Events
     #endregion
-    public Action OnDiamondsAdded;
+    public Action<int> OnDiamondsAdded;
 
 
     private void Awake()
@@ -69,7 +69,7 @@ public class CollectablesController : MonoBehaviour
     private void AddDiamonds(int value)
     {
         diamonds += value;
-        OnDiamondsAdded?.Invoke();
+        OnDiamondsAdded?.Invoke(diamonds);
     }
 
     /// <summary>
