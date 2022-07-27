@@ -11,11 +11,13 @@ public class HealthSystem : MonoBehaviour, IDamagable
     #region Properties
     #endregion
     public int Health { get => currentHealth; }
+    public int MaxHealth { get => maxHealth; }
 
     #region Events
     #endregion
     public event Action OnTakeDamage;
     public event Action OnDeath;
+    public event Action<int> OnHealthChange;
 
     #region Extra Data
     [Space(10)]
@@ -28,6 +30,7 @@ public class HealthSystem : MonoBehaviour, IDamagable
     private void Start()
     {
         currentHealth = maxHealth;
+        OnHealthChange?.Invoke(currentHealth);
     }
 
 
@@ -51,11 +54,13 @@ public class HealthSystem : MonoBehaviour, IDamagable
         {
             currentHealth = 0;
             OnDeath?.Invoke();
+            OnHealthChange?.Invoke(currentHealth);
             return;
         }
 
         // if we didnt die after getting hit
         OnTakeDamage?.Invoke();
+        OnHealthChange?.Invoke(currentHealth);
     }
 
     /// <summary>

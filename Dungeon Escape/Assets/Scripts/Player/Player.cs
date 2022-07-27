@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private bool isPlayerInputDisabled;
     private float lastSpriteDirection = 1f;
     private bool isGrounded;
-    private bool isAttacking;
+    private bool canAttack = true;
 
     #region References
     [Space(10)]
@@ -88,9 +88,9 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         // if we press left click and we're not currently attacking
-        if (Input.GetMouseButtonDown(0) && isAttacking == false)
+        if (Input.GetMouseButtonDown(0) && canAttack == true)
         {
-            isAttacking = true;
+            canAttack = false;
             playerAnimation.ProcessAttack();
 
             StartCoroutine(DelayBetweenAttacks(weapon.AttackCooldown));
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     private IEnumerator DelayBetweenAttacks(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        isAttacking = false;
+        canAttack = true;
     }
 
     /// <summary>
@@ -191,5 +191,13 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector2(lastSpriteDirection, 1f);
         }
+    }
+
+    /// <summary>
+    ///  Player can attack if value is true. 
+    /// </summary>
+    public void SetCanAttack(bool value)
+    {
+        canAttack = value;
     }
 }

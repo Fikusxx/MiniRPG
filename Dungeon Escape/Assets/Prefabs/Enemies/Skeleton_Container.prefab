@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
-  gemsDrop: 2
+  gemsDrop: 3
 --- !u!114 &5751965542935921071
 MonoBehaviour:
   m_ObjectHideFlags: 0
