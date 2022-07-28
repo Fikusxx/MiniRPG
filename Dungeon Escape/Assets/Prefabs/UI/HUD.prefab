@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 7148849704528934164}
   - component: {fileID: 7148849704528934162}
   - component: {fileID: 7148849704528934163}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 7148849704821528741}
   - component: {fileID: 7148849704821528742}
   - component: {fileID: 7148849704821528743}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Conrols_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 7148849705318639566}
   - component: {fileID: 7148849705318639564}
   - component: {fileID: 7148849705318639565}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: B_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,8 +501,8 @@ GameObject:
   - component: {fileID: 7148849705439660771}
   - component: {fileID: 7148849705439660772}
   - component: {fileID: 7148849705439660773}
-  m_Layer: 0
-  m_Name: Character_UI
+  m_Layer: 5
+  m_Name: Player_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7148849705536460956}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 7148849706223108822}
   - component: {fileID: 7148849706223108820}
   - component: {fileID: 7148849706223108821}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: A_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}

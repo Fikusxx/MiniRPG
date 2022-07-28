@@ -80,3 +80,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondsText: {fileID: 0}
+  shopDiamondsText: {fileID: 0}

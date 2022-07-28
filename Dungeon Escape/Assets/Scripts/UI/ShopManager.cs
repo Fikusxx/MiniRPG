@@ -1,19 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 
 [DisallowMultipleComponent]
 public class ShopManager : MonoBehaviour
 {
-    #region Singleton
-    #endregion
-    public static ShopManager Instance { get; private set; }
-
     #region References
     [Space(5)]
     [Header("References")]
     #endregion
-    [SerializeField] private Text diamondsText;
     [SerializeField] private RectTransform selectionOverlay;
 
     #region States
@@ -24,33 +18,6 @@ public class ShopManager : MonoBehaviour
     #endregion
     public event Action<int> OnItemPurchase;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    private void Start()
-    {
-        Collectables.Instance.OnDiamondsChanged += UpdateDiamondsText;
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        Collectables.Instance.OnDiamondsChanged -= UpdateDiamondsText;
-    }
-
-    /// <summary>
-    /// Update diamonds count
-    /// </summary>
-    private void UpdateDiamondsText(int diamondsAmount)
-    {
-        diamondsText.text = $"{diamondsAmount}G";
-    }
 
     /// <summary>
     /// Select the item, activate and place overlay over it. If the item is already selected - deactivate the overlay

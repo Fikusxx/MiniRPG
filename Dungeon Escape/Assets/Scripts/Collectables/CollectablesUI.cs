@@ -8,6 +8,7 @@ public class CollectablesUI : MonoBehaviour
     [Header("Texts")]
     #endregion
     [SerializeField] private Text diamondsText;
+    [SerializeField] private Text shopDiamondsText;
 
 
     private void OnEnable()
@@ -27,5 +28,6 @@ public class CollectablesUI : MonoBehaviour
     private void UpdateDiamondsCount(int diamondsCount)
     {
         diamondsText.text = diamondsCount.ToString();
+        shopDiamondsText.text = diamondsCount.ToString() + "G";
     }
 }

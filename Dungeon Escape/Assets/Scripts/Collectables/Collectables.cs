@@ -20,6 +20,12 @@ public class Collectables : MonoBehaviour
     #endregion
     public int Diamonds { get => diamonds; }
 
+    #region References
+    [Space(10)]
+    [Header("References")]
+    #endregion
+    [SerializeField] private ShopManager shopManager;
+
     #region Prefabs 
     [Space(10)]
     [Header("Collectables Prefabs")]
@@ -49,7 +55,7 @@ public class Collectables : MonoBehaviour
             diamond.OnDiamondCollected += ProcessDiamondPickup;
         }
 
-        ShopManager.Instance.OnItemPurchase += ProcessItemPurchase;
+        shopManager.OnItemPurchase += ProcessItemPurchase;
     }
 
     private void OnDisable()
@@ -59,7 +65,7 @@ public class Collectables : MonoBehaviour
             diamond.OnDiamondCollected -= ProcessDiamondPickup;
         }
 
-        ShopManager.Instance.OnItemPurchase -= ProcessItemPurchase;
+        shopManager.OnItemPurchase -= ProcessItemPurchase;
     }
 
 
